@@ -1,0 +1,23 @@
+{
+  "name": "cryptolit-frontend",
+  "version": "1.0.0",
+  "description": "An app where users solve cryptograms made from great lines of English literature",
+  "main": "index.js",
+  "dependencies": {
+    "fomantic-ui": "^2.8.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/replacem3nts/cryptolit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/replacem3nts/cryptolit/issues"
+  },
+  "homepage": "https://github.com/replacem3nts/cryptolit#readme"
+}
