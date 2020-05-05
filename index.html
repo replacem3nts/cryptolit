@@ -4,12 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptolit</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <script defer src="index.js" type="text/javascript"></script>
 </head>
 <body>
-    <div>
-        <!-- info from rails backend shouldn't be written directly onto index.html -->
+    <div class="ui grid container" id="container">
+        <div class="row" id="sitehead"><h1>CryptoLit</h1></div>
+        <div class="row" id="sitebody">
+            <div class="three wide column side-container">
+                    <div class="side-box" id="nav">
+                        <div class="inner-box">NAVIGATE</div>
+                    </div>
+                    <div class="side-box" id="progress">
+                        <div class="inner-box">PROGRESS</div>
+                    </div>
+                    <div class="side-box" id="new-puzzle">
+                        <div class="inner-box">NEW</div>
+                    </div>
+            </div>
+            <div class="eleven wide column" >
+                <div id="outer-view">
+                    <div id="middle-view">
+                        <div id="inner-view"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="two wide column side-container">
+                <div class="side-box right-three">
+                    <div class="inner-box">Level 1</div>
+                </div>
+                <div class="side-box right-three">
+                    <div class="inner-box">Level 2</div>
+                </div>
+                <div class="side-box right-three">
+                    <div class="inner-box">Level 3</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

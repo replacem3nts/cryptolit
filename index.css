@@ -1,0 +1,88 @@
+body {
+    background-color: #F6BE83;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#container {
+    height: 100vh;
+    width: 100%;
+}
+
+#sitehead {
+    height: 15%;
+    justify-content: center;
+    padding: 2rem;
+}
+
+#sitebody {
+    height: 85%;
+    justify-content: center;
+}
+
+#outer-view {
+    border: 2px #4A2C0C solid;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#middle-view {
+    border: 5px #4A2C0C solid;
+    height: 98%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#inner-view {
+    border: 2px #4A2C0C solid;
+    height: 98%;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6E2B9;
+}
+
+/* side box styling */
+.side-container {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.side-box {
+    border: 3px #4A2C0C solid;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box {
+    min-height: 100%;
+    min-width: 100%;
+    border: 1px #4A2C0C solid;
+}
+
+/* left side box styling */
+#nav {
+    height: 25%;
+}
+
+#progress {
+    height: 45%;
+}
+
+#new-puzzle {
+    height: 20%;
+}
+
+
+/* right side box styling */
+.right-three {
+    height: 30%;
+}
