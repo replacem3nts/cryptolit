@@ -6,13 +6,12 @@ let getAllUsers = () => {
     .then(userArray => userArray.forEach(user => allUsers.push(user)))
 }
 
-// let getAllUsers = () => {
-//     fetch(API_URL + '/users')
-//     .then(r => r.json())
-//     .then(userArray => userArray.forEach(user => allUsers.push(user)))
-// }
+let getUserChallenges = (userId) => {
+    let userChallenges = fetch(API_URL + `/users/${userId}`).then(r => r.json())
+    return userChallenges
+}
 
-let getChallenge = (difficulty, user) => {
+let makeChallenge = (difficulty, user) => {
     let promiseObj = fetch(API_URL + '/challenges', {
         method: 'POST',
         headers: {

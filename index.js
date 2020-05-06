@@ -23,7 +23,7 @@ function resetPageContent() {
             let form = evt.target
             let username = form.username.value
             if (doesUserExist(username)) {
-                loggedInUser = allUsers.filter(user => user.username === username)
+                 new User(allUsers.filter(user => user.username === username)[0])
             } else {
 
             }
