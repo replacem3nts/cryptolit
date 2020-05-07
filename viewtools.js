@@ -51,7 +51,9 @@ class Viewtools {
                     signupForm.append(errorMsg)
                     form.username.value = ""
                 } else {
-    
+                    createUser(username).then(user => {
+                        console.log(user)
+                    })
                 }
             })
         })
