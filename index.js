@@ -8,7 +8,7 @@ function resetPageContent() {
     let loginBtn = makeLogInBtn()
     let signUpBtn = makeSignUpBtn()
 
-    resetChildren(navPane)
+    Viewtools.resetChildren(navPane)
     navPane.append(loginBtn, signUpBtn)
 
     loginBtn.addEventListener('click', () => {
@@ -57,7 +57,7 @@ function doesUserExist(name) {
 
 // Clears existing content from the main viewer and creates form that can be used for login or signup. Returns the login form so that when invoked, can set a variable equal to the form for event listeners and addn'l mods.
 function createViewerForm(){
-    resetChildren(mainViewer)
+    Viewtools.resetChildren(mainViewer)
     let loginForm = document.createElement('form')
     let usernameInput = document.createElement('input')
     usernameInput.type = 'text'
@@ -75,14 +75,6 @@ function createViewerForm(){
     mainViewer.append(loginForm)
 
     return loginForm
-}
-
-function resetChildren(element) {
-    let child = element.lastElementChild
-    while(child) {
-        element.removeChild(child)
-        child = element.lastElementChild
-    }
 }
 
 // Below functions create logged out pageview
@@ -103,7 +95,7 @@ function makeSignUpBtn() {
 }
 
 function resetProgressPane() {
-    resetChildren(progressPane)
+    Viewtools.resetChildren(progressPane)
     let quoteText = document.createElement('p')
     quoteText.innerText = "It is literature which for me opened the mysterious and decisive doors of imagination and understanding. To see the way others see. To think the way others think. And above all, to feel. - Salman Rushdie"
     
@@ -111,7 +103,7 @@ function resetProgressPane() {
 }
 
 function resetNewPuzzlePane() {
-    resetChildren(newPuzzlePane)
+    Viewtools.resetChildren(newPuzzlePane)
     let byHeader = document.createElement('h4')
     byHeader.innerText = "Created by"
 
