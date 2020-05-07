@@ -66,6 +66,16 @@ body {
     min-height: 100%;
     min-width: 100%;
     border: 1px #4A2C0C solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-progress {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
 }
 
 /* left side box styling */
@@ -73,8 +83,23 @@ body {
     height: 25%;
 }
 
+.my-button {
+    border: 3px #4A2C0C solid;
+    margin: .5em;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0px 4px 4px;
+    font-weight: 600;
+}
+
 #progress {
     height: 45%;
+    overflow: hidden;
+}
+
+#prog-inner {
+    padding: 1em;
+    font-style: italic;
+    font-weight: 600;
 }
 
 #new-puzzle {

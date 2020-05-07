@@ -26,20 +26,29 @@ class Challenge {
     static renderUserView = () => {
         let diffCount = this.diffCount()
 
+        let lOneDivHead = document.createElement('div')
+        lOneDivHead.className = "level-progress"
+        lOneDivHead.innerText = `Level 1: `
         let lOneDiv = document.createElement('div')
         lOneDiv.className = "level-progress"
-        lOneDiv.innerText = `Level 1: ${diffCount[1]} of 10`
-        levelOneBox.append(lOneDiv)
+        lOneDiv.innerText = `${diffCount[1]} of 10`
+        levelOneBox.append(lOneDivHead, lOneDiv)
         
+        let lTwoDivHead = document.createElement('div')
+        lTwoDivHead.className = "level-progress"
+        lTwoDivHead.innerText = `Level 2: `
         let lTwoDiv = document.createElement('div')
         lTwoDiv.className = "level-progress"
-        lTwoDiv.innerText = `Level 1: ${diffCount[2]} of 10`
-        levelTwoBox.append(lTwoDiv)
+        lTwoDiv.innerText = `${diffCount[2]} of 10`
+        levelTwoBox.append(lTwoDivHead, lTwoDiv)
         
+        let lThreeDivHead = document.createElement('div')
+        lThreeDivHead.className = "level-progress"
+        lThreeDivHead.innerText = `Level 3: `
         let lThreeDiv = document.createElement('div')
         lThreeDiv.className = "level-progress"
-        lThreeDiv.innerText = `Level 1: ${diffCount[3]} of 10`
-        levelThreeBox.append(lThreeDiv)
+        lThreeDiv.innerText = `${diffCount[3]} of 10`
+        levelThreeBox.append(lThreeDivHead, lThreeDiv)
 
         let totalProg = document.createElement('div')
         totalProg.className = "total-progress"
