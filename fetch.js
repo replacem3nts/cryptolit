@@ -26,13 +26,17 @@ let getUserChallenges = (userId) => {
     return userChallenges
 }
 
-let makeChallenge = (difficulty, user) => {
-    let promiseObj = fetch(API_URL + '/challenges', {
-        POST_HEADERS,
+let makeChallenge = (difficulty, user_id) => {
+    let newChallenge = fetch(API_URL + '/challenges', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify({
             difficulty: difficulty,
-            user: user
+            user_id: user_id
         })
     }).then(r => r.json())
-    return promiseObj
+    return newChallenge
 }

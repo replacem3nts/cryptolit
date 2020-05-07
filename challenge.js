@@ -6,6 +6,12 @@ class Challenge {
         Challenge.all.push(this)
     }
 
+// Resets Challenge.all when user logs in  
+    static clearAll() {
+        this.all.length = 0
+    }
+
+// Enumerates through Challenge.all (a user's challenges) to build a hash counting number of solved challenges by each difficulty level
     static diffCount() {
         let diffHash = {
             1: 0,
@@ -19,36 +25,30 @@ class Challenge {
         return diffHash
     }
 
-    static clearAll() {
-        this.all.length = 0
+    static renderUserView = () => {
+        this.renderChallengeInfo()
     }
 
-    static renderUserView = () => {
+// Handles all the challenge-related view elements (right side panes, left side middle pane populating using diffCount
+    static renderChallengeInfo() {
         let diffCount = this.diffCount()
+        let diffLevelBoxes = [
+            levelOneBox,
+            levelTwoBox,
+            levelThreeBox
+        ]
 
-        let lOneDivHead = document.createElement('div')
-        lOneDivHead.className = "level-progress"
-        lOneDivHead.innerText = `Level 1: `
-        let lOneDiv = document.createElement('div')
-        lOneDiv.className = "level-progress"
-        lOneDiv.innerText = `${diffCount[1]} of 10`
-        levelOneBox.append(lOneDivHead, lOneDiv)
-        
-        let lTwoDivHead = document.createElement('div')
-        lTwoDivHead.className = "level-progress"
-        lTwoDivHead.innerText = `Level 2: `
-        let lTwoDiv = document.createElement('div')
-        lTwoDiv.className = "level-progress"
-        lTwoDiv.innerText = `${diffCount[2]} of 10`
-        levelTwoBox.append(lTwoDivHead, lTwoDiv)
-        
-        let lThreeDivHead = document.createElement('div')
-        lThreeDivHead.className = "level-progress"
-        lThreeDivHead.innerText = `Level 3: `
-        let lThreeDiv = document.createElement('div')
-        lThreeDiv.className = "level-progress"
-        lThreeDiv.innerText = `${diffCount[3]} of 10`
-        levelThreeBox.append(lThreeDivHead, lThreeDiv)
+        for (let i = 0; i < diffLevelBoxes.length; i++) {
+            let levelDivHead = document.createElement('div')
+            levelDivHead.className = 'level-progress'
+            levelDivHead.innerText = `Level ${i + 1}: `
+            
+            let levelDiv = document.createElement('div')
+            levelDiv.className = 'level-progress'
+            levelDiv.innerText = `${diffCount[i + 1]} of 10`
+
+            diffLevelBoxes[i].append(levelDivHead, levelDiv)
+        }
 
         let totalProg = document.createElement('div')
         totalProg.className = "total-progress"

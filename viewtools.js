@@ -51,9 +51,7 @@ class Viewtools {
                     signupForm.append(errorMsg)
                     form.username.value = ""
                 } else {
-                    createUser(username).then(user => {
-                        console.log(user)
-                    })
+                    createUser(username).then(user => new User(user))
                 }
             })
         })
@@ -109,6 +107,7 @@ class Viewtools {
 
         let submitButton = document.createElement('input')
         submitButton.type = 'submit'
+        submitButton.className = 'my-button'
 
         
         loginForm.append(formInstructions, usernameInput, submitButton)
