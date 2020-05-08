@@ -297,8 +297,12 @@ class Challenge {
             this.form = evt.target
             this.difficulty = this.form[0].value
             makeChallenge(this.difficulty, User.loggedIn.id).then(challenge => {
-                User.loggedIn.addNewToLoggedIn(challenge)
-                Challenge.getLastUnsolved().renderChallenge()
+                if(!challenge.message) {
+                    User.loggedIn.addNewToLoggedIn(challenge)
+                    Challenge.getLastUnsolved().renderChallenge()
+                } else {
+                    console.log(challenge.message)
+                }
             })
         })
     }
