@@ -3,7 +3,9 @@ class User {
 
     constructor(user) {
         this.user = user
-        User.loggedIn = this.user
+        this.id = user.id
+        this.challenges = user.challenges
+        User.loggedIn = this
         this.createUserView()
         
     }
@@ -12,6 +14,12 @@ class User {
         User.handleChallenges()
         this.createNewChallenge()
     }
+
+    updateChallenge(challenge) {
+        this.chIndex = this.challenges.findIndex(ch => ch.id === challenge.id)
+        this.challenges = [...this.challenges.splice(this.chIndex, 1), challenge]
+        this.createUserView()
+    }
     
     static handleChallenges() {
         Challenge.clearAll()
@@ -19,52 +27,55 @@ class User {
         this.loggedIn.challenges.forEach((challenge) => {
                 new Challenge(challenge)
             })
+        Challenge.all[Challenge.all.length - 1].renderChallenge()
         Challenge.renderUserView()
     }
         
     createNewChallenge() {
-        let difficulties = [1, 2, 3]
+        this.difficulties = [1, 2, 3]
 
-        let newChallengeForm = document.createElement('form')
-        let diffSelect = document.createElement('select')
-        diffSelect.className = 'my-button'
+        this.newChallengeForm = document.createElement('form')
+        this.diffSelect = document.createElement('select')
+        this.diffSelect.className = 'my-button'
         
-        for (let i = 0; i < difficulties.length; i++) {
-            let diffOption = document.createElement('option')
-            diffOption.innerText = difficulties[i] 
-            diffOption.value = difficulties[i]
-            diffSelect.append(diffOption)
+        for (let i = 0; i < this.difficulties.length; i++) {
+            this.diffOption = document.createElement('option')
+            this.diffOption.innerText = this.difficulties[i] 
+            this.diffOption.value = this.difficulties[i]
+            this.diffSelect.append(this.diffOption)
         }
         
         
-        let diffSelectLabel = document.createElement('label')
-        diffSelectLabel.innerText = `Select Difficulty: `
+        this.diffSelectLabel = document.createElement('label')
+        this.diffSelectLabel.innerText = `Select Difficulty: `
         
-        let submitDiv = document.createElement('div')
-        let newChallengeSubmit = document.createElement('input')
-        newChallengeSubmit.type = 'submit'
-        newChallengeSubmit.value = 'Get a New Puzzle!'
-        newChallengeSubmit.className = 'my-button'
-        submitDiv.append(newChallengeSubmit)
+        this.submitDiv = document.createElement('div')
+        this.newChallengeSubmit = document.createElement('input')
+        this.newChallengeSubmit.type = 'submit'
+        this.newChallengeSubmit.value = 'Get a New Puzzle!'
+        this.newChallengeSubmit.className = 'my-button'
+        this.submitDiv.append(this.newChallengeSubmit)
         
-        newChallengeForm.append(diffSelectLabel, diffSelect, submitDiv)
-        newPuzzlePane.append(newChallengeForm)
+        this.newChallengeForm.append(this.diffSelectLabel, this.diffSelect, this.submitDiv)
+        newPuzzlePane.append(this.newChallengeForm)
 
-        newChallengeForm.addEventListener('submit', (evt) => {
+        this.newChallengeForm.addEventListener('submit', (evt) => {
             evt.preventDefault()
-            let form = evt.target
-            let difficulty = form[0].value
-            let user_id = User.loggedIn.id
-            makeChallenge(difficulty, user_id).then(challenge => {
-                User.addNewToLoggedIn(challenge)
+            this.form = evt.target
+            this.difficulty = this.form[0].value
+            makeChallenge(this.difficulty, this.id).then(challenge => {
+                this.addNewToLoggedIn(challenge)
+                User.handleChallenges()
             })
-            User.handleChallenges()
+            
             
         })
     }
-    static addNewToLoggedIn(challenge) {
-        this.loggedIn.challenges = [...this.loggedIn.challenges, challenge] 
+    addNewToLoggedIn(challenge) {
+        this.challenges = [...this.challenges, challenge]
     }
+
+    
 
 
 

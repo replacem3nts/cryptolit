@@ -32,3 +32,15 @@ let makeChallenge = (difficulty, user_id) => {
     }).then(r => r.json())
     return newChallenge
 }
+
+let trySolution = (id, solvetime, solution) => {
+    let challengeUpdate = fetch(API_URL + `/challenges/${id}/solved?key=${solution}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({solvetime: solvetime, solved: true})
+    }).then(r => r.json())
+    return challengeUpdate
+}
