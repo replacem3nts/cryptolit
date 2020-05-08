@@ -1,7 +1,4 @@
 const API_URL = "http://localhost:3000"
-const POST_HEADERS = [
-    ]
-
 
 let getAllUsers = () => {
     fetch(API_URL + '/users')
@@ -19,11 +16,6 @@ let createUser = (username) => {
         body: JSON.stringify({username: username})
     }).then(r => r.json())
     return newUser
-}
-
-let getUserChallenges = (userId) => {
-    let userChallenges = fetch(API_URL + `/users/${userId}`).then(r => r.json())
-    return userChallenges
 }
 
 let makeChallenge = (difficulty, user_id) => {

@@ -9,19 +9,17 @@ class User {
     }
 
     createUserView() {
+        User.handleChallenges()
+        this.createNewChallenge()
+    }
+    
+    static handleChallenges() {
         Challenge.clearAll()
         Viewtools.resetAllChildren()
-        this.handleChallenges()
-        this.createNewChallenge()
+        this.loggedIn.challenges.forEach((challenge) => {
+                new Challenge(challenge)
+            })
         Challenge.renderUserView()
-
-    }
-
-    handleChallenges() {
-        getUserChallenges(this.user.id).then((user) => {
-            user.challenges.forEach((challenge) => {
-                new Challenge(challenge)})
-        })
     }
         
     createNewChallenge() {
@@ -57,9 +55,15 @@ class User {
             let form = evt.target
             let difficulty = form[0].value
             let user_id = User.loggedIn.id
-            makeChallenge(difficulty, user_id).then(challenge => console.log(challenge))
+            makeChallenge(difficulty, user_id).then(challenge => {
+                User.addNewToLoggedIn(challenge)
+            })
+            User.handleChallenges()
             
         })
+    }
+    static addNewToLoggedIn(challenge) {
+        this.loggedIn.challenges = [...this.loggedIn.challenges, challenge] 
     }
 
 
