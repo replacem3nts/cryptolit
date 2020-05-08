@@ -44,3 +44,9 @@ let trySolution = (id, solvetime, solution) => {
     }).then(r => r.json())
     return challengeUpdate
 }
+
+let getChallengeAnswer = (challenge_id) => {
+    let answer = fetch(API_URL + `/challenges/${challenge_id}/answer`)
+    .then(r => r.json())
+    return answer
+}

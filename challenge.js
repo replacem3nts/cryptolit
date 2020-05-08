@@ -1,5 +1,11 @@
 class Challenge {
-    static all = []
+    static solved = []
+    static unsolved = []
+    static diffCount = {
+        1: 0,
+        2: 0,
+        3: 0
+    }
 
     constructor(challenge) {
         this.challenge = challenge
@@ -8,7 +14,8 @@ class Challenge {
         this.solvetime = challenge.solvetime
         this.cryptogram = challenge.cryptogram
         this.difficulty = challenge.puzzle.difficulty
-        Challenge.all.push(this)
+        this.solved === true ? Challenge.solved.push(this) : Challenge.unsolved.push(this)
+        if (this.solved === true) {Challenge.diffCount[this.difficulty]++}
     }
 
 // Below are the helper methods to create the various parts of the crypogram puzzle rendered in the main viewer
@@ -22,11 +29,11 @@ class Challenge {
         this.diffDisplay.innerText = `Difficulty Level: ${this.difficulty}`
         this.diffDisplay.className = 'head-elements'
         
-        this.timeDisplay = document.createElement('span')
-        this.timeDisplay.innerText = `Time: ${this.solvetime}`
-        this.timeDisplay.className = 'head-elements'
+        // this.timeDisplay = document.createElement('span')
+        // this.timeDisplay.innerText = `Time: ${this.solvetime}`
+        // this.timeDisplay.className = 'head-elements'
         
-        this.headDisplay.append(this.diffDisplay, this.timeDisplay)
+        this.headDisplay.append(this.diffDisplay)
         return this.headDisplay
     }
     
@@ -162,30 +169,34 @@ class Challenge {
         this.inputArray = []
         this.allInputFields.forEach(input => this.inputArray.push(input.value))
         this.uniqueStr = [...new Set(this.inputArray)].join('').toUpperCase()
-        trySolution(this.id, this.solvetime, this.uniqueStr).then(challenge => {
-            User.loggedIn.updateChallenge(challenge)
+        trySolution(this.id, this.solvetime, this.uniqueStr).then(response => {
+            if (!response.message) {
+                User.loggedIn.updateChallenge(response)
+                getChallengeAnswer(response.id).then(answer => Viewtools.displaySolution(answer))
+            } else {
+                console.log(response.message)
+            }
         })
     }
 
 // Resets Challenge.all when user logs in  
     static clearAll() {
-        this.all.length = 0
-    }
-
-// Enumerates through Challenge.all (a user's challenges) to build a hash counting number of solved challenges by each difficulty level
-
-    static renderUserView = () => {
+        this.solved.length = 0
+        this.unsolved.length = 0
         this.diffCount = {
             1: 0,
             2: 0,
             3: 0
         }
-        this.all.forEach(challenge => {
-            if(challenge.solved)
-            this.diffCount[challenge.difficulty]++
-        })
+    }
+
+// Enumerates through Challenge.all (a user's challenges) to build a hash counting number of solved challenges by each difficulty level
+
+    static renderUserView = () => {
         this.renderChallengeStatusRight()
+        this.renderNavPane()
         this.renderProgressPane()
+        this.createNewChallenge()
     }
 
 // Handles all the challenge-related view elements (right side panes, left side middle pane populating using diffCount
@@ -209,31 +220,91 @@ class Challenge {
         }
     }
 
+    static renderNavPane() {
+        this.helloMsg = document.createElement('h3')
+        this.helloMsg.innerText = `Hi, ${User.loggedIn.username}!`
+    
+        this.logoutBtn = document.createElement('button')
+        this.logoutBtn.className = 'my-button'
+        this.logoutBtn.innerText = 'Log Out'
+
+        this.logoutBtn.addEventListener('click', (evt) => {location.reload(true)})
+    
+        navPane.append(this.helloMsg, this.logoutBtn)
+    }
+
     static renderProgressPane() {
         this.userProg = document.createElement('div')
         this.totalSolved = this.diffCount[1] + this.diffCount[2] + this.diffCount[3]
+        this.solvedPercent = Math.round(this.totalSolved/60*100)
 
         this.totalProg = document.createElement('h3')
         this.totalProg.className = "total-progress"
-        this.totalProg.innerText = `${Math.round(this.totalSolved/60*100)}% Done!`
+        this.totalProg.innerText = `${this.solvedPercent}% Done!`
+        this.userProg.append(this.totalProg)
         progressPane.append(this.userProg)
 
-        this.unsolved = Challenge.all.filter(challenge => challenge.solved === false)
         if(this.unsolved.length > 0) {
-            this.randUnsolved = document.createElement('button')
-            this.randUnsolved.className = 'my-button'
-            this.randUnsolved.innerText = 'Keep Solving an Open Cryptogram!'
+            this.unsolvedElement = document.createElement('button')
+            this.unsolvedElement.className = 'my-button'
+            this.unsolvedElement.innerText = 'Keep Solving an Open Cryptogram!'
     
-            this.randUnsolved.addEventListener('click', (evt) => {
+            this.unsolvedElement.addEventListener('click', (evt) => {
                 evt.preventDefault()
                 
                 this.random = this.unsolved[Math.floor(Math.random()*this.unsolved.length)]
                 this.random.renderChallenge()
             })
-            progressPane.append(this.randUnsolved)
+            progressPane.append(this.unsolvedElement)
+        } else {
+            this.unsolvedElement = document.createElement('h3')
+            this.unsolvedElement.className = 'my-button'
+            this.unsolvedElement.innerText = 'You Have no Unsolved Cryptograms!'
+            progressPane.append(this.unsolvedElement)
         }
     }
 
+    static createNewChallenge() {
+        this.difficulties = [1, 2, 3]
+
+        this.newChallengeForm = document.createElement('form')
+        this.diffSelect = document.createElement('select')
+        this.diffSelect.className = 'my-button'
+        
+        for (let i = 0; i < this.difficulties.length; i++) {
+            this.diffOption = document.createElement('option')
+            this.diffOption.innerText = this.difficulties[i] 
+            this.diffOption.value = this.difficulties[i]
+            this.diffSelect.append(this.diffOption)
+        }
+        
+        
+        this.diffSelectLabel = document.createElement('label')
+        this.diffSelectLabel.innerText = `Select Difficulty: `
+        
+        this.submitDiv = document.createElement('div')
+        this.newChallengeSubmit = document.createElement('input')
+        this.newChallengeSubmit.type = 'submit'
+        this.newChallengeSubmit.value = 'Get a New Puzzle!'
+        this.newChallengeSubmit.className = 'my-button'
+        this.submitDiv.append(this.newChallengeSubmit)
+        
+        this.newChallengeForm.append(this.diffSelectLabel, this.diffSelect, this.submitDiv)
+        newPuzzlePane.append(this.newChallengeForm)
+
+        this.newChallengeForm.addEventListener('submit', (evt) => {
+            evt.preventDefault()
+            this.form = evt.target
+            this.difficulty = this.form[0].value
+            makeChallenge(this.difficulty, User.loggedIn.id).then(challenge => {
+                User.loggedIn.addNewToLoggedIn(challenge)
+                Challenge.getLastUnsolved().renderChallenge()
+            })
+        })
+    }
+    static getLastUnsolved() {
+        return Challenge.unsolved[Challenge.unsolved.length - 1]
+    }
 }
 
 // get or set methods for updating a challenge?

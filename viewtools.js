@@ -153,4 +153,58 @@ class Viewtools {
 
         newPuzzlePane.append(byHeader, byLink)
     }
+
+    static newUserWelcomeMessage() {
+        this.welcomeHeadDiv = document.createElement('div')
+        this.welcomeHead = document.createElement('h2')
+        this.welcomeHead.innerText = "Thanks for signing up for Cryptolit!"
+        this.welcomeHeadDiv.append(this.welcomeHead)
+        
+        this.welcomeBodyDiv = document.createElement('div')
+        this.welcomeBodyFirst = document.createElement('p')
+        this.welcomeBodyFirst.innerText = "To get started: select a difficulty level and click 'Get a New Puzzle' to start solving."
+        this.welcomeBodySecond = document.createElement('p')
+        this.welcomeBodySecond.innerText = "Happy puzzling!"
+        this.welcomeBodyDiv.append(this.welcomeBodyFirst, this.welcomeBodySecond)
+
+        mainViewer.append(this.welcomeHeadDiv, this.welcomeBodyDiv)
+    }
+
+    static returningUserWelcomeMessage() {
+        this.welcomeHeadDiv = document.createElement('div')
+        this.welcomeHead = document.createElement('h2')
+        this.welcomeHead.innerText = "Welcome back to Cryptolit!"
+        this.welcomeHeadDiv.append(this.welcomeHead)
+        
+        this.welcomeBodyDiv = document.createElement('div')
+        this.welcomeBodyFirst = document.createElement('p')
+        this.welcomeBodyFirst.innerText = "You're doing a great job so far, keep up the good work."
+        this.welcomeBodySecond = document.createElement('p')
+        this.welcomeBodySecond.innerText = "Happy puzzling!"
+        this.welcomeBodyDiv.append(this.welcomeBodyFirst, this.welcomeBodySecond)
+
+        mainViewer.append(this.welcomeHeadDiv, this.welcomeBodyDiv)
+    }
+
+    static displaySolution(answer) {
+        this.answerContentDiv = document.createElement('div')
+        this.answerContentDiv.id = 'answer-content'
+        this.answerContent = document.createElement('p')
+        this.answerContent.innerText = answer.content
+        this.answerContentDiv.append(this.answerContent)
+        
+        this.answerDetailsDiv = document.createElement('div')
+        this.answerDetailsDiv.id = 'answer-details'
+
+        this.answerAuthorSpan = document.createElement('span')
+        this.answerAuthorSpan.id = 'answer-author'
+        this.answerAuthorSpan.innerText = `-${answer.author} from `
+        
+        this.answerSourceSpan = document.createElement('span')
+        this.answerSourceSpan.id = 'answer-source'
+        this.answerSourceSpan.innerText = answer.source
+
+        this.answerDetailsDiv.append(this.answerAuthorSpan, this.answerSourceSpan)
+        mainViewer.append(this.answerContentDiv, this.answerDetailsDiv)
+    }
 }
