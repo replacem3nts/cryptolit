@@ -1,8 +1,8 @@
 # 🗝📖   CryptoLit   📖🗝
-========================
+***
 CryptoLit is full-stack web application that challenges you to solve cryptograms of varying difficulties based on famous lines from English Literature. The application comes out of the box with 100 puzzles with three levels of difficulty, but can be customized to make crytograms from whatever text you like!
 
-***
+____
 ## Table of contents
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
@@ -13,6 +13,7 @@ CryptoLit is full-stack web application that challenges you to solve cryptograms
 <!-- - [Contributing](#contributing)
     - [Known Issues](#known-issues) -->
 - [License](#license)
+____
 
 ## Getting Started 🚀
 These instructions will give you a step-by-step guide to get a copy of this project on your local machine to test, develop, or just solve puzzles. If you'd like to skip all that and just want to solve puzzles, a version of the web application is currently deployed [here]().
@@ -26,13 +27,14 @@ git@2.17.1 or higher
 gatsby-cli@2.8.22 or higher
 ```
 ### Installation 📋
-
+____
 
 ## Domain Model 🗺
 <h2 align="center">
     <img src="https://github.com/replacem3nts/cryptolit/blob/master/images/domain_model.png" alt="CryptoLit Domain Model" width="600px">
     <br>
 <h2>
+____
 
 ## Languages and Tools 🛠️
 ### Frontend:
@@ -45,6 +47,7 @@ gatsby-cli@2.8.22 or higher
 - [Active Record](https://guides.rubyonrails.org/active_record_basics.html) - Object Relational Mapping
 - [Active Model Serializers](https://github.com/rails-api/active_model_serializers) - Serializer for structuring exposed API data 
 - [Ruby Digest](https://ruby-doc.org/stdlib-2.4.0/libdoc/digest/rdoc/Digest.html) - Module for encrypting and decrypting data used for puzzle solutions and validations
+____
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
