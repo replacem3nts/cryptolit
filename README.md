@@ -6,7 +6,7 @@ CryptoLit is full-stack web application that challenges you to solve cryptograms
 
 ## Domain Model 🗺
 <h2 align="center">
-    <img src="https://github.com/replacem3nts/cryptolit/images/domain_model.png" alt="CryptoLit Domain Model" width="600px">
+    <img src="https://github.com/replacem3nts/cryptolit/blob/master/images/domain_model.png" alt="CryptoLit Domain Model" width="600px">
     <br>
 <h2>
 
