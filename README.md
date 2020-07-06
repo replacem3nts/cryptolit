@@ -1,6 +1,14 @@
-# CryptoLit 🗝
+# 🗝📖 CryptoLit 📖🗝
+=========================
+CryptoLit is full-stack web application that challenges you to solve cryptograms of varying difficulties based on famous lines from English Literature. The application comes out of the box with 100 puzzles with three levels of difficulty, but can be customized to make crytograms from whatever text you like!
 
-## A fun and easy way to turn your favorite lines from literature (or anything!) into challenging cryptograms.
+## Getting Started 🚀
+
+## Domain Model 🗺
+<h2 align="center">
+    <img src="https://github.com/replacem3nts/cryptolit/images/domain_model.png" alt="CryptoLit Domain Model" width="600px">
+    <br>
+<h2>
 
 ## Technologies Used 🛠️
 ### Frontend:
