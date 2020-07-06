@@ -36,6 +36,3 @@ class User {
         this.handleChallenges()
     }
 }
-
-// consider using helper method to create basic elements and append them to the DOM
-// getter/setter for user from loggedIn 

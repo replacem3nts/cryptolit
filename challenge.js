@@ -190,8 +190,6 @@ class Challenge {
         }
     }
 
-// Enumerates through Challenge.all (a user's challenges) to build a hash counting number of solved challenges by each difficulty level
-
     static renderUserView = () => {
         this.renderChallengeStatusRight()
         this.renderNavPane()
@@ -310,6 +308,3 @@ class Challenge {
         return Challenge.unsolved[Challenge.unsolved.length - 1]
     }
 }
-
-// get or set methods for updating a challenge?
-// create static class that resets the default pageview when
