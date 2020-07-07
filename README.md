@@ -2,37 +2,36 @@
 ***
 CryptoLit is full-stack web application that challenges you to solve cryptograms of varying difficulties based on famous lines from English Literature. The application comes out of the box with 100 puzzles with three levels of difficulty, but can be customized to make crytograms from whatever text you like!
 
+<h2 align="center">
+    <img src="https://github.com/replacem3nts/cryptolit/blob/master/images/cryptolit_demo.gif" alt="CryptoLit Demo" width="600px">
+    <br>
+</h2>
+
 
 ## Table of contents
 - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
 - [Installation](#installation)
-- [Domain Model](#domain-model)
 - [Languages and Tools](#languages-and-tools)
-<!-- - [Contributing](#contributing)
-    - [Known Issues](#known-issues) -->
 - [License](#license)
 
 ## Getting Started 🚀
 These instructions will give you a step-by-step guide to get a copy of this project on your local machine to test, develop, or just solve puzzles. If you'd like to skip all that and just want to solve puzzles, a version of the web application is currently deployed [here]().
 
-### Prerequisites 📋
-
-```
-ruby@v2.6.1 or higher
-rails@6.0.2 or higher
-git@2.17.1 or higher
-gatsby-cli@2.8.22 or higher
-```
 ### Installation 📋
+NOTE: You will need first install the backend before running the frontend. If you have not yet done that, follow the instructions on the backend README which you can find [here](https://github.com/replacem3nts/cryptolitAPI).
 
+1. Clone this repository and navigate into the folder:
+```
+$ git clone git@github.com:your_username_here/cryptolit.git
+$ cd cryptolit
+```
 
-## Domain Model 🗺
-<h2 align="center">
-    <img src="https://github.com/replacem3nts/cryptolit/blob/master/images/domain_model.png" alt="CryptoLit Domain Model" width="600px">
-    <br>
-<h2>
+2. Open the index file:
+```
+$ open index.html
+```
 
 ## Languages and Tools 🛠️
 ### Frontend:
